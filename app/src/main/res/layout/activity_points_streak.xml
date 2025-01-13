@@ -10,7 +10,7 @@
         android:id="@+id/tv_agregar_exploracion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lista de nuevas exploraciónes"
+        android:text="Listas de nuevas exploraciónes"
         android:textSize="18sp"
         android:paddingBottom="10dp"/>
 
