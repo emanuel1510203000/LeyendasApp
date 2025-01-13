@@ -77,7 +77,7 @@ public class PointsStreakActivity extends AppCompatActivity {
         exploracionAdapter.notifyItemRemoved(position);
     }
 
-    // Método para eliminar una exploración
+    // Método para eliminar una exploración ya corregida
     private void eliminarLeyenda(int position) {
         leyendasList.remove(position);
         exploracionAdapter.notifyItemRemoved(position);
