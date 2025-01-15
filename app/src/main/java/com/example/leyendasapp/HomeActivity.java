@@ -1,6 +1,7 @@
 package com.example.leyendasapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,9 +48,13 @@ public class HomeActivity extends AppCompatActivity {
                 cerrarSesion();
                 return true;
             } else if (item.getItemId() == R.id.action_settings) {
-                // Redirigir a la actividad de racha de puntos
-                Intent intent = new Intent(HomeActivity.this, PointsStreakActivity.class);
-                startActivity(intent);
+                // Redirigir a la actividad de racha de puntos y pasar el correo del usuario
+                if (currentUser != null) {
+                    String email = currentUser.getEmail();
+                    Intent intent = new Intent(HomeActivity.this, PointsStreakActivity.class);
+                    intent.putExtra("USER_EMAIL", email); // Pasa el correo del usuario a la siguiente actividad
+                    startActivity(intent);
+                }
                 return true;
             }
             return false;
@@ -85,7 +90,16 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void cerrarSesion() {
+        // Limpiar los datos de la sesión guardados en SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("LeyendasData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();  // Eliminar todos los datos guardados
+        editor.apply();   // Aplicar los cambios
+
+        // Cerrar sesión en Firebase
         FirebaseAuth.getInstance().signOut();
+
+        // Redirigir al Login
         Intent intent = new Intent(HomeActivity.this, Login.class);
         startActivity(intent);
         finish();
