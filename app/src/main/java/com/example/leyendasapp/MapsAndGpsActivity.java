@@ -21,7 +21,7 @@ public class MapsAndGpsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Maneja la acción al presionar la flecha de retroceso
+        // Creamos la acción al presionar la flecha de retroceso
         if (item.getItemId() == android.R.id.home) {
             // Regresar a la actividad HomeActivity
             Intent intent = new Intent(MapsAndGpsActivity.this, HomeActivity.class);
