@@ -82,10 +82,10 @@ public class HomeActivity extends AppCompatActivity {
         List<LegendItem> items = new ArrayList<>();
         items.add(new LegendItem("BIENVENIDOS",
                 "En esta aplicación encontrarás la ubicación de eventos paranormales ocurridos dependiendo de en donde te encuentres",
-                "app/src/main/res/drawable/lampara.jpg"));
+                "https://img.freepik.com/foto-gratis/joven-bruja-lampara-que-ilumina-camino-matorral-dia_23-2147902878.jpg?t=st=1736963404~exp=1736967004~hmac=396e17c512341f585d902700b1f3c9c5900995873916cb0098a15ffbcdb94a1a&w=740"));
         items.add(new LegendItem("MANUAL DE USO",
                 "Para ingresar al mapa de leyendas deberás entrar en el menú ubicado en la esquina superior derecha de tu pantalla y seleccionar la opción 'mapas y gps' esto mostrará en pantalla las coordenadas y direcciones de eventos paranormales ocurridos al rededor de tu ubicación",
-                "res/drawable/mujer2.png"));
+                "https://st5.depositphotos.com/69697474/75728/v/600/depositphotos_757286416-stock-illustration-happy-ghost-exclamation-question-mark.jpg"));
 
         CardAdapter adapter = new CardAdapter(items, new CardAdapter.OnItemClickListener() {
             @Override
