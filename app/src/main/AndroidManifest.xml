@@ -46,6 +46,7 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label=""/>
+
         <!-- Actividad de Mapas y GPS -->
         <activity
             android:name=".MapsAndGpsActivity"
