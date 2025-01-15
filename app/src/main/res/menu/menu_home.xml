@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
-        android:title="Exploraciones Realizadas"
+        android:title="Bitácora de Exploraciones"
+        android:icon="@drawable/baseline_note_add_24"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_maps_gps"
+        android:title="Mapas y GPS"
+        android:icon="@drawable/baseline_map_24"
+    app:showAsAction="never"/>
     <item
         android:id="@+id/action_logout"
         android:title="Cerrar Sesión"

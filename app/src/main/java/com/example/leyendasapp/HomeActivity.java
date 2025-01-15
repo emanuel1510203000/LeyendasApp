@@ -56,6 +56,11 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 return true;
+            } else if (item.getItemId() == R.id.action_maps_gps) {
+                // Redirigir a la actividad de Mapas y GPS
+                Intent intent = new Intent(HomeActivity.this, MapsAndGpsActivity.class);
+                startActivity(intent);
+                return true;
             }
             return false;
         });
