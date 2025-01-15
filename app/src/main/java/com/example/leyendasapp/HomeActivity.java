@@ -8,13 +8,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -68,7 +74,37 @@ public class HomeActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false); // Ocultar título
         }
+
+        //cards
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<LegendItem> items = new ArrayList<>();
+        items.add(new LegendItem("BIENVENIDOS",
+                "En esta aplicación encontrarás la ubicación de eventos paranormales ocurridos dependiendo de en donde te encuentres",
+                "app/src/main/res/drawable/lampara.jpg"));
+        items.add(new LegendItem("MANUAL DE USO",
+                "Para ingresar al mapa de leyendas deberás entrar en el menú ubicado en la esquina superior derecha de tu pantalla y seleccionar la opción 'mapas y gps' esto mostrará en pantalla las coordenadas y direcciones de eventos paranormales ocurridos al rededor de tu ubicación",
+                "res/drawable/mujer2.png"));
+
+        CardAdapter adapter = new CardAdapter(items, new CardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(LegendItem item) {
+                showLegendDialog(item);
+            }
+        });
+
+        recyclerView.setAdapter(adapter);
     }
+
+    private void showLegendDialog(LegendItem item) {
+        new AlertDialog.Builder(this)
+                .setTitle(item.getTitle())
+                .setMessage(item.getDescription())
+                .setPositiveButton("Cerrar", null)
+                .show();
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
