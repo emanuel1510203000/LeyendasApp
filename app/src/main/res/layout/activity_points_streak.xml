@@ -1,42 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Sección para agregar nueva exploración correciones en las card -->
+    <!-- Título de la sección -->
     <TextView
         android:id="@+id/tv_agregar_exploracion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Listas de nuevas exploraciónes"
+        android:text="Listas de nuevas exploraciones"
         android:textSize="18sp"
-        android:paddingBottom="10dp"/>
+        android:textColor="#333333"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-medium" />
 
-    <EditText
-        android:id="@+id/et_leyenda_nombre"
+    <!-- CardView para encapsular los campos de entrada -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre de la exploración"
-        android:inputType="text"/>
+        android:layout_marginBottom="20dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        android:backgroundTint="#FFFFFF">
 
-    <EditText
-        android:id="@+id/et_leyenda_descripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Descripción"
-        android:inputType="text"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_guardar_exploracion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guardar"
-        android:background="@drawable/button_background"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"/>
+            <!-- Campo para el nombre de la exploración -->
+            <EditText
+                android:id="@+id/et_leyenda_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre de la exploración"
+                android:inputType="text"
+                android:background="@drawable/edittext_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Campo para la descripción de la exploración -->
+            <EditText
+                android:id="@+id/et_leyenda_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descripción"
+                android:inputType="text"
+                android:background="@drawable/edittext_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Botón para guardar la exploración -->
+            <Button
+                android:id="@+id/btn_guardar_exploracion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guardar"
+                android:background="@drawable/button_background"
+                android:textColor="#FFFFFF"
+                android:padding="12dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <!-- Lista de exploraciones realizadas -->
     <TextView
         android:id="@+id/tv_exploraciones_realizadas"
@@ -44,12 +73,13 @@
         android:layout_height="wrap_content"
         android:text="Exploraciones realizadas:"
         android:textSize="18sp"
-        android:paddingTop="20dp"/>
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="#333333" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_exploraciones"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"/>
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
 </LinearLayout>

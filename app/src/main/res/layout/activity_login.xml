@@ -20,9 +20,9 @@
 
     <ImageView
         android:id="@+id/userImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/mujer2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/mujer4"
         android:layout_marginBottom="20dp"
         android:layout_gravity="center" />
 
