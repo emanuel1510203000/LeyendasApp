@@ -57,6 +57,8 @@ dependencies {
     implementation ("com.google.android.material:material:1.6.0")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
