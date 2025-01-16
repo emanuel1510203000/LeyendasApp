@@ -2,7 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Permiso para acceder a Internet -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Permisos para acceder a la ubicación -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Permiso para acceder a la ubicación en segundo plano (si aplica) -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LeyendasApp"
         tools:targetApi="31">
+
+        <!-- Meta-data para la clave de la API de Google Maps -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <!-- Actividad principal de la aplicación -->
         <activity
@@ -53,6 +65,12 @@
             android:exported="true"
             android:label=""
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
+
+        <activity
+            android:name=".AddLocationActivity"
+            android:exported="true"
+            android:label="Añadir Ubicación"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
 
     </application>
 
