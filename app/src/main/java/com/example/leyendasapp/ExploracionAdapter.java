@@ -39,7 +39,7 @@ public class ExploracionAdapter extends RecyclerView.Adapter<ExploracionAdapter.
         holder.nombreTextView.setText(leyenda.getNombre());
         holder.descripcionTextView.setText(leyenda.getDescripcion());
 
-        // Setear los botones de editar y eliminar
+        // Setetear de botones
         holder.btnEditar.setOnClickListener(v -> listener.onEdit(position));
         holder.btnEliminar.setOnClickListener(v -> listener.onDelete(position));
     }

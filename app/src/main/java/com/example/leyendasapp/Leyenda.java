@@ -1,7 +1,7 @@
 package com.example.leyendasapp;
 
 public class Leyenda {
-
+//INtegracion de Getter and Setters
     private String nombre;
     private String descripcion;
 

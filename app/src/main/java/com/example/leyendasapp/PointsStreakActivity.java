@@ -31,7 +31,7 @@ public class PointsStreakActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_points_streak);
 
-        // Inicializar componentes de UI
+        // Inicializar componentes de UI correción
         etLeyendaNombre = findViewById(R.id.et_leyenda_nombre);
         etLeyendaDescripcion = findViewById(R.id.et_leyenda_descripcion);
         btnGuardarExploracion = findViewById(R.id.btn_guardar_exploracion);

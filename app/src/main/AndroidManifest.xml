@@ -21,7 +21,7 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <!-- Definición del Intent Filter para que esta sea la actividad principal -->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,6 +46,7 @@
             android:exported="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:label=""/>
+
         <!-- Actividad de Mapas y GPS -->
         <activity
             android:name=".MapsAndGpsActivity"
