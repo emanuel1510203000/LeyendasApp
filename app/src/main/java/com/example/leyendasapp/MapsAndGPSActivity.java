@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -105,6 +106,40 @@ public class MapsAndGPSActivity extends AppCompatActivity implements OnMapReadyC
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
 
+
+
+        // ** Agregar un marcador personalizado
+        LatLng lloronaLocation = new LatLng(19.2188716,-98.8097659);
+        googleMap.addMarker(new MarkerOptions()
+                .position(lloronaLocation)
+                .title("Avistamiento de la Llorona")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ghost)));
+
+        LatLng nahualLocation = new LatLng(19.2358895,-98.8443971);
+        googleMap.addMarker(new MarkerOptions()
+                .position(nahualLocation)
+                .title("Un nahual que se perdio entre la milpa")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ghost)));
+
+        LatLng amarreLocation = new LatLng(19.2123209,-98.7386217);
+        googleMap.addMarker(new MarkerOptions()
+                .position(amarreLocation)
+                .title("Avistamiento de rituales de brujas")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ghost)));
+
+        LatLng vozLocation = new LatLng(19.2112825,-98.7438324);
+        googleMap.addMarker(new MarkerOptions()
+                .position(vozLocation)
+                .title("Se escucharon pasos al rededor del area de campamento")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ghost)));
+
+        LatLng ovniLocation = new LatLng(19.1958644,-98.7365411);
+        googleMap.addMarker(new MarkerOptions()
+                .position(ovniLocation)
+                .title("Avistamiento de esferas luminosas")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ghost)));
+
+
         // Habilitar clics en el mapa para seleccionar ubicaciones
         googleMap.setOnMapClickListener(latLng -> {
             selectedLocation = latLng; // Guardar la ubicación seleccionada
@@ -117,6 +152,8 @@ public class MapsAndGPSActivity extends AppCompatActivity implements OnMapReadyC
             // Agregar un nuevo marcador
             marker = googleMap.addMarker(new MarkerOptions().position(latLng).title("Ubicación seleccionada"));
         });
+
+
     }
 
     @Override
