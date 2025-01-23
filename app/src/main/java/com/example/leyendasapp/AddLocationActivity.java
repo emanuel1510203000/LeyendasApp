@@ -1,71 +1,77 @@
 package com.example.leyendasapp;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddLocationActivity extends AppCompatActivity {
-    private ListView listViewLocations;
-    private ArrayList<String> locationList;
-    private ArrayAdapter<String> adapter;
+
+    private EditText userEmail, userName, location, paranormalEvent, creature, description, comments, duration, latitudeField, longitudeField;
+    private Button btnSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
-        listViewLocations = findViewById(R.id.listViewLocations);
-        locationList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, locationList);
-        listViewLocations.setAdapter(adapter);
+        userEmail = findViewById(R.id.userEmail);
+        userName = findViewById(R.id.userName);
+        location = findViewById(R.id.location);
+        paranormalEvent = findViewById(R.id.paranormalEvent);
+        creature = findViewById(R.id.creature);
+        description = findViewById(R.id.description);
+        comments = findViewById(R.id.comments);
+        duration = findViewById(R.id.duration);
+        latitudeField = findViewById(R.id.latitude);
+        longitudeField = findViewById(R.id.longitude);
+        btnSubmit = findViewById(R.id.btnSubmit);
 
-        loadLocations();  // Cargar ubicaciones desde la base de datos
+        // Obtener las coordenadas del intent
+        double latitude = getIntent().getDoubleExtra("latitude", 0);
+        double longitude = getIntent().getDoubleExtra("longitude", 0);
+
+        // Llenar los campos de latitud y longitud automáticamente
+        latitudeField.setText(String.valueOf(latitude));
+        longitudeField.setText(String.valueOf(longitude));
+
+        btnSubmit.setOnClickListener(v -> saveLocationData());
     }
 
-    private void loadLocations() {
-        String url = "http://localhost/paranormal_events/locations_crud.php?action=get"; // Asegúrate de cambiar localhost por la IP de tu PC
+    private void saveLocationData() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("locations").child(userId);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        locationList.clear();
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                String location = jsonObject.getString("location");
-                                String eventName = jsonObject.getString("event_name");
-                                locationList.add(eventName + " - " + location);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(AddLocationActivity.this, "Error al obtener ubicaciones", Toast.LENGTH_SHORT).show();
-            }
-        });
+            Map<String, Object> locationData = new HashMap<>();
+            locationData.put("userEmail", userEmail.getText().toString());
+            locationData.put("userName", userName.getText().toString());
+            locationData.put("location", location.getText().toString());
+            locationData.put("paranormalEvent", paranormalEvent.getText().toString());
+            locationData.put("creature", creature.getText().toString());
+            locationData.put("description", description.getText().toString());
+            locationData.put("comments", comments.getText().toString());
+            locationData.put("duration", duration.getText().toString());
+            locationData.put("latitude", latitudeField.getText().toString());
+            locationData.put("longitude", longitudeField.getText().toString());
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
+            databaseReference.push().setValue(locationData).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    finish(); // Cerrar la actividad
+                } else {
+                    // Manejar errores
+                }
+            });
+        }
     }
 }

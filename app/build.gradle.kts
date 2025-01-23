@@ -60,6 +60,7 @@ dependencies {
     // Utilidades de mapas de Google, si las necesitas
     implementation ("com.google.maps.android:android-maps-utils:2.2.0")  // Última versión disponible
     implementation ("com.android.volley:volley:1.2.1")
+    implementation ("com.google.firebase:firebase-database:20.2.2")
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-auth-ktx")
@@ -67,6 +68,7 @@ dependencies {
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.code.gson:gson:2.8.9")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.firebase.database)
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

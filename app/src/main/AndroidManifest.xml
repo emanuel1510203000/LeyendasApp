@@ -10,7 +10,7 @@
 
     <!-- Permiso para acceder a la ubicación en segundo plano (si aplica) -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -61,7 +61,7 @@
 
         <!-- Actividad de Mapas y GPS -->
         <activity
-            android:name=".MapsAndGpsActivity"
+            android:name=".MapsAndGPSActivity"
             android:exported="true"
             android:label=""
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
